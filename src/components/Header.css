@@ -1,0 +1,47 @@
+/* Header CSS */
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  .header li {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .header a {
+    text-decoration: none;
+    color: #286F6C;
+    margin-right: 40px;
+  }
+
+  .header a:hover {
+    transform: scale(5);
+    font-weight: bold;
+  }
+  
+
+  .logo {
+    display: flex;
+    font-size: xx-large;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 20px;
+  }
+
+  #B {
+    font-weight: bold;
+    color: #286F6C;
+  }
+
+  #Padda {
+    font-weight: lighter;
+  }
+  
