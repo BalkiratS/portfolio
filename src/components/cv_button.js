@@ -1,8 +1,9 @@
 import React from "react";
+import "./cv_button.css";
 
 const Cv_button = () => {
     return (
-        <button id="cv_button">Download CV</button>
+        <button className="cv_button">Download CV</button>
     )
 }
 
