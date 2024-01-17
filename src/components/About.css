@@ -1,0 +1,118 @@
+/* Style for About.js */
+.about_me{
+    background-repeat: no-repeat;                
+    background-position: 29% 53%; 
+    background-size: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px 50px;
+    position: relative;
+}
+
+.left_col,
+.right_col {
+  position: absolute;
+  width: 35%;
+  height: 90%;
+  min-width: 370px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.left_col {
+  left: 0;
+  padding: 15px;
+  align-items: flex-end;
+}
+
+.right_col {
+  right: 0;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+.picture_col{
+    position: relative;
+    margin-top: 200px;
+    width: 30%;
+    min-width: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.name_div{
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    line-height: 24px;
+}
+
+#hey{
+    color: var(--5, #0D2F3F);
+    font-family: Bubblegum Sans;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    padding: 10px 0px;
+}
+
+#name {
+    color: var(--1, #EDB33C);
+    font-family: 'Poppins', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    padding-bottom: 10px;
+    flex-shrink: 0;
+}
+/* New Graduate*/
+.status{
+    color: var(--5, #0D2F3F);
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 26px;
+    text-transform: uppercase;
+    padding-right: 60px;
+    padding-bottom: 30px;
+}
+
+.summary{
+    color: var(--5, #0D2F3F);
+    width: 90%;
+    margin-left: 30px;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    flex-shrink: 0;
+    margin-top: 35px;
+}
+
+.job {
+    padding-left: 35px;
+}
+
+#software  {
+    color: var(--5, #0D2F3F);
+    font-family: Aclonica;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px; /* 138.462% */
+}
+
+#developer {
+    color: var(--2, #286F6C);
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px; /* 138.462% */
+    padding-left: 90px;
+    }

@@ -1,0 +1,6 @@
+.skills_section{
+    display: flex;
+    margin: 10px 80px;
+    border-radius: 8px;
+    transition: all 150ms ease-in-out
+}
