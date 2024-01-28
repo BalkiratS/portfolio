@@ -9,13 +9,14 @@
     text-align: center;
     border-radius: 8px;
     border: 2px solid #286F6C;
-    transition: all 150ms ease-in-out;
+    transition: all 250ms ease-in-out;
     background-color: white;
     height: fit-content;
 }
 
-.skill_card_short span{
-    padding: 20px;
+.name{
+    margin: 0;
+    padding: 3px 10px;
     color: #286F6C;
     font-size: 20px;
     line-height: 34px;
@@ -28,7 +29,7 @@
     background-color: #286F6C;
 }
 
-.skill_card_short:hover span{
+.skill_card_short:hover p{
     color: white;
 }
 
@@ -52,7 +53,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 2px solid #286f6b56;
+    border-bottom: 1px solid #286f6b56;
 }
 .skill_logo img {
     max-width: 90%;
@@ -62,10 +63,14 @@
 .info{
     display: flex;
     flex-direction: column;
-    margin: 10px 24px 24px 24px;
+    margin: 0px 24px 24px 24px;
+    padding: 22px 0px 0px 0px;
+    border-top: 2px solid #286f6b5f;
 }
 
 .heading{
+    margin: 0;
+    padding: 3px 22px;
     font-family: 'Poppins', sans-serif;
     font-size: 26px;
     font-weight: 500;
@@ -73,8 +78,7 @@
     align-self: right;
     color: #286F6C;
     margin: 10px 0px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #4aa19d65;
+    padding-bottom: 0px;
 }
 
 .projects{
@@ -128,3 +132,12 @@
     color: whitesmoke;
 }
 
+/* Close button styling */
+.close {
+    top: 0;
+    background-color: transparent;
+    border: 2px solid black;
+    cursor: pointer;
+    font-size: 18px;
+    color: #286F6C; /* Match card border color */
+  }

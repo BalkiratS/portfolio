@@ -1,16 +1,31 @@
 import './App.css';
-import Header from './components/Header';
-import About_me from './components/About';
-import Skills from './components/skills';
+import Main from './components/Main';
+import Admin from './components/Admin';
+import Login from './components/Login';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+
 
 function App() {
+
+  const isAuthenticated = () => {
+    return localStorage.getItem("isLoggedIn") === "true";
+  }
   return (
-    <div className="body">
-      <Header/>
-      <About_me/>
-      <Skills />
-      
-    </div>
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />}  />
+        <Route path="/login" element={<Login />} />
+        <Route exact path="/admin" element={
+          isAuthenticated() ? (
+            <Admin />
+          ) : (
+            <Navigate replace to={"/login"} />
+          )
+        }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

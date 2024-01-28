@@ -1,0 +1,90 @@
+.mainContainer {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 15%;
+  height: 100vh;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleContainer h1{
+    color: var(--5, #0D2F3F);
+    font-family: Aclonica;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px; /* 138.462% */
+}
+
+
+.resultContainer, .historyItem { 
+  flex-direction: row;
+  display: flex;
+  width: 400px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.historyContainer {
+  flex-direction: column;
+  display: flex;
+  height: 200px;
+  align-items: center;
+  flex-grow: 5;
+  justify-content: flex-start;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 260px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.inputContainer > .errorLabel {
+  color: red;
+  font-size: 12px;
+}
+
+.inputBox {
+  height: 48px;
+  width: 250px;
+  font-size: large;
+  border-radius: 8px;
+  border: 1px solid grey;
+  padding-left: 8px;
+}
+
+.inputButton{
+    background-color: #286F6C;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    border: none;
+    color: white;
+    font-weight: normal;
+    padding: 8px 12px;
+    font-size: medium;
+    border-radius: 8px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    transition: all 150ms ease-in-out;
+    white-space: nowrap;
+    width: 150px;
+    cursor: pointer;
+}

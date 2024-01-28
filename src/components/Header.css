@@ -3,7 +3,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 150px 50px;
+    padding: 10px 150px 50px;
+    transition: all 150ms ease-in-out;
 }
 
 .header ul {
@@ -46,4 +47,19 @@
 
   #Padda {
     font-weight: lighter;
+  }
+
+  .nav-div{
+    display: flex;
+    padding-left: 170px;
+  }
+
+  .admin{
+    margin-left: 170px;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+  }
+
+  .admin:hover{
+    transform: scale(1.2);
   }

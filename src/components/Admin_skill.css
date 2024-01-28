@@ -1,0 +1,87 @@
+.skill_edit{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: 10px;
+    font-size: 20px;
+    background-color: rgba(255, 235, 205, 0.723);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.save_cancel_buttons{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
+}
+
+.admin_button{
+    background-color: #286F6C;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    color: white;;
+    padding: 2px 12px;
+    font-size: medium;
+    border-radius: 8px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    transition: all 150ms ease-in-out;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 2px solid #286F6C;
+}
+
+.admin_button:hover{
+    background-color: transparent; /* Keep background transparent on hover */
+    color: #286F6C; /* Green text on hover */
+}
+
+.edit_projects h4
+.edit_courses h4{
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+.edit_projects ul,
+.edit_courses ul{
+    list-style-type: none;
+    margin: 10px;
+    padding: 0px;
+}
+
+.edit_projects li,
+.edit_courses li{
+    display: flex;
+    justify-content: space-around;
+    margin: 15px 0px;
+}
+
+.new_item{
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.delete_button{
+    margin-left: 10px;
+    background-color: red;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    color: white;;
+    padding: 2px 12px;
+    font-size: medium;
+    border-radius: 8px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    transition: all 150ms ease-in-out;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 2px solid red;
+}
+
+.delete_button:hover{
+    background-color: transparent; /* Keep background transparent on hover */
+    color: red; /* Green text on hover */
+}
