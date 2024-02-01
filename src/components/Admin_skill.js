@@ -23,6 +23,7 @@ const Admin_skill = ( {skill, skillsData, onSkillChange} ) => {
       formData.append('projects', JSON.stringify(updatedSkill.projects));
       formData.append('courses', JSON.stringify(updatedSkill.courses));
       formData.append('logo', updatedSkill.logo);  // Assuming updatedSkill.logo is a File object
+      formData.append('category', updatedSkill.category);
   
       try {
           const response = await axios.patch(`http://localhost:9000/skills/auth/update/${updatedSkill.name}`, formData, {
@@ -113,6 +114,12 @@ const Admin_skill = ( {skill, skillsData, onSkillChange} ) => {
             value={updatedSkill.name}
             onChange={(e) => setUpdatedSkill({ ...updatedSkill, name: e.target.value })}
           /><br/>
+          <label>Category: </label>
+          <input
+            type="text"
+            value={updatedSkill.category}
+            onChange={(e) => setUpdatedSkill({ ...updatedSkill, category: e.target.value })}
+            /><br/>
           <label>Logo: </label>
           <input type="file" id="logo-file" onChange={(e) => onLogoChange(e)} />
 

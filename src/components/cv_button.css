@@ -1,4 +1,4 @@
-cv_button {
+.cv_button {
     background-color: #286F6C;
     font-family: 'Poppins', sans-serif;
     border: none;
@@ -14,7 +14,7 @@ cv_button {
     white-space: nowrap;
 }
 
-cv_button:hover {
+.cv_button:hover {
     transform: scale(1.05); /* Increase size by 5% */
     background-color: transparent; /* Keep background transparent on hover */
     border: 2px solid #286F6C; /* Green border on hover */

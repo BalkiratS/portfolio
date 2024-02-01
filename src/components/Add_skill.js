@@ -38,6 +38,7 @@ const Add_skill = ( {skillsData, onSkillAdd, setAddSkill}) => {
       formData.append('projects', JSON.stringify(newSkill.projects));
       formData.append('courses', JSON.stringify(newSkill.courses));
       formData.append('logo', newSkill.logo);  // Assuming newSkill.logo is a File object
+      formData.append('category', newSkill.category);
   
       try {
           const response = await axios.post('http://localhost:9000/skills/auth/add', formData, {
@@ -121,6 +122,12 @@ const Add_skill = ( {skillsData, onSkillAdd, setAddSkill}) => {
                 onChange={(e) => setNewSkill({ ...newSkill, name: e.target.value })}
             />
             <br />
+            <label>Category: </label>
+            <input
+            type="text"
+            value={newSkill.category}
+            onChange={(e) => setNewSkill({ ...newSkill, category: e.target.value })}
+            /><br/>
             <label>Logo: </label>
             <input type="file" id="logo-file" onChange={(e) => onLogoChange(e)} />
 

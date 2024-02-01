@@ -9,7 +9,7 @@ function Admin() {
   const [skillsData, setSkillsData] = useState([]); // State to store retrieved skills
   const [message, setMessage] = useState(""); // State for error or success messages
   const [addSkill, setAddSkill] = useState(false);
-  const { token } = useAuth();
+  const { token, logout } = useAuth();
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -25,6 +25,20 @@ function Admin() {
 
     fetchSkills();
   }, [token]); // Re-fetch skills if token changes
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', (event) => {
+      logout(); // Call the logout function
+
+      // Optional: Ask for confirmation before leaving
+      event.preventDefault();
+      event.returnValue = '';
+    });
+
+    return () => {
+      window.removeEventListener('beforeunload', logout);
+    };
+  }, []);
 
   return (
     <div className="admin_skills">

@@ -43,8 +43,9 @@
     flex-direction: column;
     border-radius: 8px;
     margin: 10px;
-    background-color: whitesmoke;
+    background-color: white;
     transition: all 150ms ease-in-out;
+      
 }
 
 .skill_logo{
@@ -118,7 +119,7 @@
 .projects a,
 .courses a{
     text-decoration: none;
-    color: black;
+    color: #286F6C;;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -129,7 +130,7 @@
 
 .projects li:hover a,
 .courses li:hover a{
-    color: whitesmoke;
+    color: white;
 }
 
 /* Close button styling */

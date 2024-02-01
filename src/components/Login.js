@@ -9,7 +9,6 @@ const Login = (props) => {
     const [password, setPassword] = useState("")
     const [usernameError, setUsernameError] = useState("")
     const [passwordError, setPasswordError] = useState("")
-    const navigate = useNavigate();
 
     const {login} = useAuth();
     
@@ -39,9 +38,6 @@ const Login = (props) => {
             const token = response.data.token;
             // Store the token in localStorage or sessionStorage
             login(token)
-            // Redirect to another page or perform other actions
-            console.log('Login successful. Token:', token);
-            navigate("/admin")
         })
         .catch(error => {
             window.alert("You are not the admin")
@@ -66,6 +62,7 @@ const Login = (props) => {
         <br />
         <div className={"inputContainer"}>
             <input
+                type="password"
                 value={password}
                 placeholder="Password"
                 onChange={ev => setPassword(ev.target.value)}

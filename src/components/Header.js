@@ -7,7 +7,7 @@ const Header = () => {
     const navigate = useNavigate();
 
     const admin_click = () => {
-        navigate('/login');
+        navigate('/admin');
     }
     
     return (
@@ -30,7 +30,7 @@ const Header = () => {
                         <circle cx="12" cy="8" r="4" stroke="#33363F" strokeWidth="2" strokeLinecap="round"/>
                         </svg>
             </div>
-            <div className="cv_button">
+            <div className="cv_button_div">
                 <Cv_button />
             </div>
         </div>

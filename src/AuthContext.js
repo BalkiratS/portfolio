@@ -4,21 +4,24 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('jwtToken') || null);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem('jwtToken')
+  );
 
   const login = (newToken) => {
     setToken(newToken);
     localStorage.setItem('jwtToken', newToken);
-    localStorage.setItem('isLoggedIn', "true")
+    setIsAuthenticated(true)
   };
 
   const logout = () => {
     setToken(null);
     localStorage.removeItem('jwtToken');
-    localStorage.removeItem("isLoggedIn");
+    setIsAuthenticated(false)
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ token, login, logout, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

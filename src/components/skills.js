@@ -4,42 +4,77 @@ import Skill from "./skill";
 import './skills.css'
 import {motion} from 'framer-motion'
 
-// const skillsData = [
-//     {skillName: 'Python', info: {projects: [{name: 'Fittrack', link: '#'}], courses: [{name: 'CMPT 101', link:'#' }], logo: 'python-logo.png'} },
-//     {skillName: 'Java', info: {projects: [{name: 'Dashboard', link: '#'}], courses: [{name: 'CMPT 305', link:'#' }], logo: 'Java-Emblem.jpeg'} }
-//   ];
+const Skills = () => {
+  const [skillsData, setSkillsData] = useState([]);
 
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const res = await axios.get("http://localhost:9000/skills/");
+        const groupedSkills = groupSkillsByCategory(res.data);
+        setSkillsData(groupedSkills);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
 
+    fetchSkills();
+  }, []);
 
-  const Skills = () => {
-    const [skillsData, setSkillsData] = useState([]); // State to store retrieved skills
+  const groupSkillsByCategory = (skills) => {
+    const groupedSkills = {};
+    skills.forEach((skill) => {
+      const category = skill.category;
+      groupedSkills[category] = groupedSkills[category] || [];
+      groupedSkills[category].push(skill);
+    });
+    return groupedSkills;
+  };
 
-    useEffect(() => {
-        const fetchSkills = async () => {
-          try {
-            const res = await axios.get("http://localhost:9000/skills/");
-            setSkillsData(res.data);
-          } catch (error) {
-            console.log(error.messgae)
-          }
-        };
-    
-        fetchSkills();
-      }, []);
-
-
-
-
-    return (
-        <motion.div layout className="skills_section">
-          {skillsData.map((skill) => (
-            <Skill key={skill.name} skill={skill}/>
+  return (
+    <div className="skills_section">
+      <span className="section_heading">What I Know...</span>
+      <div className="skills_container">
+        <div className="column-wrapper"> {/* First column */}
+          {Object.entries(skillsData).map(([category, skills], index) => (
+            index % 2 === 0 && ( /* Render categories with even indices */
+              <motion.div
+                key={category}
+                layout
+                className="skills_category"
+              >
+                <span className="category_heading">{category}</span>
+                <motion.div className="skills_list">
+                  {skills.map((skill) => (
+                    <Skill key={skill.name} skill={skill} />
+                  ))}
+                </motion.div>
+              </motion.div>
+            )
           ))}
-            {/* {skillsData.map((skill) => (
-                <Skill key={skill.skillName} {...skill}/>
-            ))} */}
-        </motion.div>
-    )
-  }
+        </div>
+        <div className="column-wrapper"> {/* Second column */}
+          {Object.entries(skillsData).map(([category, skills], index) => (
+            index % 2 !== 0 && ( /* Render categories with odd indices */
+              <motion.div
+                key={category}
+                layout
+                className="skills_category"
+              >
+                <span className="category_heading">{category}</span>
+                <motion.div className="skills_list">
+                  {skills.map((skill) => (
+                    <Skill key={skill.name} skill={skill} />
+                  ))}
+                </motion.div>
+              </motion.div>
+            )
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+  
+};
 
-  export default Skills;
+export default Skills;
