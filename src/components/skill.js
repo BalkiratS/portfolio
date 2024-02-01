@@ -30,6 +30,7 @@ const Skill = ({skill}) => {
 
             {(expanded) && 
             <div className="info">
+                {(skill.projects.length > 0) && 
                  <div className="projects">
                  <span>Projects</span>
                     <ul>
@@ -40,7 +41,8 @@ const Skill = ({skill}) => {
                         ))}
                     </ul>
                 </div>
-
+                        }
+                {(skill.courses.length > 0) && 
                 <div className="courses">
                     <span>Courses</span>
                     <ul>
@@ -51,6 +53,7 @@ const Skill = ({skill}) => {
                         ))}
                     </ul>
                 </div>
+                }   
              </div>
             }
 

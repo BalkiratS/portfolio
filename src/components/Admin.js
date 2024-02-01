@@ -29,10 +29,6 @@ function Admin() {
   useEffect(() => {
     window.addEventListener('beforeunload', (event) => {
       logout(); // Call the logout function
-
-      // Optional: Ask for confirmation before leaving
-      event.preventDefault();
-      event.returnValue = '';
     });
 
     return () => {
