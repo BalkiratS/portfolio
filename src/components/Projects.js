@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Project from "./Project";
 import './Projects.css'
+import axios from "axios";
 
 const Projects = () => {
-    const projectData = [{'name': 'Fittrack', description: 'This is where the description fo the project will go', technology:[{name: 'Python'}, {name: 'Flutter'}, {name: 'Machine Learning'}]},
-    {'name': 'DashBoard', description: 'This is where the description fo the project will go', technology:[{name: 'Python'}, {name: 'Flutter'}, {name: 'Machine Learning'}]},
-    {'name': 'Hippocampus', description: 'This is where the description fo the project will go', technology:[{name: 'Python'}, {name: 'Flutter'}, {name: 'Machine Learning'}]},
-    {'name': 'test', description: 'This is where the description fo the project will go', technology:[{name: 'Python'}, {name: 'Flutter'}, {name: 'Machine Learning'}]},
-    {'name': 'test2', description: 'This is where the description fo the project will go', technology:[{name: 'Python'}, {name: 'Flutter'}, {name: 'Machine Learning'}]}]
     
+    const [projectsData, setProjectsData] = useState([]);
+
+    useEffect(() => {
+        const fetchProjects = async () => {
+            try {
+                const res = await axios.get("http://localhost:9000/projects/")
+                setProjectsData(res.data)
+
+            } catch (error) {
+                console.log(error.message)
+            }
+        };
+
+        fetchProjects();
+    }, [])
+
+
+
     return (
         <div className="projects-section">
             <h1>Projects</h1>
             <div className="project-cards">
-                {projectData.map((project) => (
+                {projectsData.map((project) => (
                     <Project key={project.name} project={project} />
                 ))}
             </div>

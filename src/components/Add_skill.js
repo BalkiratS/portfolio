@@ -74,6 +74,7 @@ const Add_skill = ( {skillsData, onSkillAdd, setAddSkill}) => {
     };
 
     const handleSubmit = async (e) => {
+        e.preventDefault()
         await AddSkillToBackend(newSkill, token);
     }
 

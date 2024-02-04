@@ -51,6 +51,7 @@ const Admin_skill = ( {skill, skillsData, onSkillChange} ) => {
   };
   
   const handleSubmit = async (e) => {
+    e.preventDefault()
     await submitSkillToBackend(updatedSkill);
     setIsEditing(false);
   };

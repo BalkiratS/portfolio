@@ -1,8 +1,11 @@
 import React from "react";
 import './Project.css'
+import { FaLink } from "react-icons/fa6";
+
 
 
 const Project = ({project}) => {
+    
     return (
         <div className="container">
               <div className="card">
@@ -17,6 +20,7 @@ const Project = ({project}) => {
                             </li>
                         ))}
                     </ul>
+                    <FaLink className="link" color="white" size='1.3em' onClick={() => window.open(project.link, '_blank')}/>
                     
 
                 </div>
