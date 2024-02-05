@@ -3,7 +3,7 @@ import "./About.css"
 import image from "../public/Vector.svg"
 import Portrait from "./portrait";
 
-const About_me = () => {
+const AboutMe = () => {
     return (
         <div className="about_me" style={{backgroundImage: `url(${image})` }}>
             <div className="left_col">
@@ -37,4 +37,4 @@ const About_me = () => {
     )
 }
 
-export default About_me;
+export default AboutMe;

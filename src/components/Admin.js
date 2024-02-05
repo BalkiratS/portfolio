@@ -13,6 +13,7 @@ function Admin() {
   const [message, setMessage] = useState(""); // State for error or success messages
   const [addSkill, setAddSkill] = useState(false);
   const [addProject, setAddProject] = useState(false);
+  const [resumeFile, setResumeFile] = useState(null);
   const { token, logout } = useAuth();
 
   useEffect(() => {
@@ -53,10 +54,34 @@ function Admin() {
     return () => {
       window.removeEventListener('beforeunload', logout);
     };
-  }, []);
+  }, );
+
+  const onResumeChange = (event) => {
+    const newResumeFile = event.target.files[0];
+    setResumeFile(newResumeFile);
+};
+
+const handleUpload = async () => {
+  try {
+    const formData = new FormData();
+    formData.append('resume', resumeFile);
+
+    const response = await axios.post('http://localhost:9000/resume/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `${token}`,
+      },
+    });
+
+    console.log('File uploaded successfully:', response.data);
+    setResumeFile(null)
+  } catch (error) {
+    console.error('Error uploading file:', error);
+  }
+};
 
   return (
-    <div>
+    <div className="admin-main">
     <div className="admin_skills">
       <h1>Skills</h1>
       {message && <h1>{message}</h1>} {/* Display message if any */}
@@ -90,6 +115,12 @@ function Admin() {
               <Add_project projectsData={projectsData} onProjectAdd={setProjectsData} setAddProject={setAddProject} />
             )}
             </div>
+
+        <div>
+          <h1>Resume</h1>
+          <input type="file" onChange={(e) => onResumeChange(e)} />
+          <button className="admin_button" onClick={handleUpload}>Upload</button>
+        </div>
     </div>
   );
 }
