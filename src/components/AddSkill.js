@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../AuthContext";
 import axios from "axios";
 
-const Add_skill = ( {skillsData, onSkillAdd, setAddSkill}) => {
+const AddSkill = ( {skillsData, onSkillAdd, setAddSkill}) => {
     const [newSkill, setNewSkill] = useState({
         name: "",
         projects: [],
@@ -41,7 +41,7 @@ const Add_skill = ( {skillsData, onSkillAdd, setAddSkill}) => {
       formData.append('category', newSkill.category);
   
       try {
-          const response = await axios.post('http://localhost:9000/skills/auth/add', formData, {
+          const response = await axios.post(`${process.env.REACT_APP_BASE_URL}skills/auth/add`, formData, {
               headers: {
                   'Content-Type': 'multipart/form-data',
                   'Authorization': `${token}`,
@@ -263,4 +263,4 @@ const Add_skill = ( {skillsData, onSkillAdd, setAddSkill}) => {
     )
 }
 
-export default Add_skill;
+export default AddSkill;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './Admin_skill.css'
+import './AdminSkill.css'
 import axios from "axios";
 import { useAuth } from "../AuthContext";
 
@@ -26,7 +26,7 @@ const Admin_skill = ( {skill, skillsData, onSkillChange} ) => {
       formData.append('category', updatedSkill.category);
   
       try {
-          const response = await axios.patch(`http://localhost:9000/skills/auth/update/${updatedSkill.name}`, formData, {
+          const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}skills/auth/update/${updatedSkill.name}`, formData, {
               headers: {
                   'Content-Type': 'multipart/form-data',
                   'Authorization': `${token}`,
@@ -58,7 +58,7 @@ const Admin_skill = ( {skill, skillsData, onSkillChange} ) => {
 
   const deleteSkill = async (skillName) => {
     try {
-        const response = await axios.delete(`http://localhost:9000/skills/auth/delete/${skillName}`, {
+        const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}skills/auth/delete/${skillName}`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `${token}`,

@@ -32,7 +32,7 @@ const Footer = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:9000/message', formData, {
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}message`, formData, {
               headers: {
                   'Content-Type': 'application/json',
               },
@@ -53,7 +53,7 @@ const Footer = () => {
     
 
     return(
-        <footer className="footer">
+        <footer id="contact" className="footer">
             <div className="links-section">
                 <h1>Get In Touch</h1>
                 <div className="contact-info">

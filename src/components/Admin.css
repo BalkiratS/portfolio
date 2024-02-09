@@ -18,3 +18,7 @@
     flex-wrap: wrap;
     
 }
+
+.admin_skills h1, .admin_projects h1, .admin_resume{
+    color: #EDB33C;
+}

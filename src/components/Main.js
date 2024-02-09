@@ -7,13 +7,20 @@ import Footer from "./Footer";
 import './Main.css'
 
 const Main = () => {
+
+
     return (
         <div className="main">
-        <Header/>
-        <AboutMe/>
-        <Skills />
-        <Projects />
-        <Footer />
+            <Header />
+            <AboutMe />
+
+            <Skills />
+            
+    
+            <Projects />
+
+            <div className="horizontal-line"></div>
+            <Footer />
         </div>
     )
 }

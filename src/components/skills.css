@@ -9,6 +9,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   width: 50%; /* Adjust width to your desired ratio */
+  margin-top: 20px;
 }
 
 .skills_category {
@@ -20,7 +21,7 @@
 
 .skills_category .category_heading {
   margin-left: 75px;
-  color: var(--5, #0D2F3F);
+  color: whitesmoke;
   font-family: Poppins;
   font-size: 26px;
   font-style: normal;
@@ -37,15 +38,40 @@
 }
 
 .skills_section {
-  margin: 5px 50px;
+  margin: 100px 50px;
+  padding: 10px 0px;
 }
 
 .skills_section .section_heading {
   margin-left: 75px;
-  color: var(--5, #0D2F3F);
+  color: #EDB33C;
   font-family: Aclonica;
-  font-size: 36px;
+  font-size: 56px;
   font-style: normal;
   font-weight: 400;
-  line-height: 56px; /* 138.462% */
+  line-height: 66px; /* 138.462% */
+}
+
+@media screen and (max-width: 1190px) {
+  .skills_container {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+  }
+  
+  .skills_section{
+    margin: 5px 15px;
+    padding: 0px 5px;
+  }
+
+  .skills_section .section_heading{
+    margin-left: 0;
+    font-size: 36px;
+  }
+
+  .column-wrapper,
+  .skills_category,
+  .skills_category .category_heading,
+  .skills_list {
+    width: 100%; /* Full width for smaller screens */
+    margin-left: 0; /* Reset left margin */
+  }
 }

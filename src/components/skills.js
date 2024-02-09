@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Skill from "./skill";
 import './skills.css'
-import {motion} from 'framer-motion'
+import {motion, useInView} from 'framer-motion'
+
 
 const Skills = () => {
   const [skillsData, setSkillsData] = useState([]);
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    margin: "0px 0px -200px 0px",
+  })
+
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const res = await axios.get("http://localhost:9000/skills/");
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}skills/`);
         const groupedSkills = groupSkillsByCategory(res.data);
         setSkillsData(groupedSkills);
       } catch (error) {
@@ -32,7 +38,14 @@ const Skills = () => {
   };
 
   return (
-    <div className="skills_section">
+    
+    <motion.div ref={ref} id="skills" className="skills_section" 
+    style={{
+      transform: isInView ? "none" : "translateX(-200px)",
+      opacity: isInView ? 1 : 0,
+      transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)"
+    }}
+      >
       <span className="section_heading">What I Know...</span>
       <div className="skills_container">
         <div className="column-wrapper"> {/* First column */}
@@ -72,7 +85,7 @@ const Skills = () => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
   
 };

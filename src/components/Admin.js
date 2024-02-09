@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from '../AuthContext';
-import Admin_skill from "./Admin_skill";
-import Add_skill from "./Add_skill";
+import AdminSkill from "./AdminSkill";
+import AddSkill from "./AddSkill";
 import "./Admin.css"
-import Admin_Project from "./Admin_project";
-import Add_project from "./Add_project";
+import AdminProject from "./AdminProject";
+import AddProject from "./AddProject";
 
 function Admin() {
   const [skillsData, setSkillsData] = useState([]); // State to store retrieved skills
@@ -19,7 +19,7 @@ function Admin() {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const res = await axios.get("http://localhost:9000/skills/", {
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}skills/`, {
           headers: { Authorization: `${token}` }, // Add authorization header
         });
         setSkillsData(res.data);
@@ -34,7 +34,7 @@ function Admin() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await axios.get("http://localhost:9000/projects/", {
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}projects/`, {
           headers: { Authorization: `${token}` }, // Add authorization header
         });
         setProjectsData(res.data);
@@ -66,7 +66,7 @@ const handleUpload = async () => {
     const formData = new FormData();
     formData.append('resume', resumeFile);
 
-    const response = await axios.post('http://localhost:9000/resume/upload', formData, {
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}resume/upload`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization': `${token}`,
@@ -88,14 +88,14 @@ const handleUpload = async () => {
       {skillsData.length > 0 && (
         <div className="skills-list">
           {skillsData.map((skill) => (
-            <Admin_skill key={skill.name} skill={skill} skillsData={skillsData} onSkillChange={setSkillsData}/>
+            <AdminSkill key={skill.name} skill={skill} skillsData={skillsData} onSkillChange={setSkillsData}/>
           ))}
         </div>
       )}
       {skillsData.length === 0 && <p>No skills found.</p>}
       {!addSkill && (<button className="admin_button" onClick={() => setAddSkill(true)}>Add</button>)}
       {addSkill && (
-        <Add_skill skillsData={skillsData} onSkillAdd={setSkillsData} setAddSkill={setAddSkill} />
+        <AddSkill skillsData={skillsData} onSkillAdd={setSkillsData} setAddSkill={setAddSkill} />
       )}
       </div>
 
@@ -105,18 +105,18 @@ const handleUpload = async () => {
             {projectsData.length > 0 && (
               <div className="projects-list">
                 {projectsData.map((project) => (
-                  <Admin_Project key={project.name} project={project} projectsData={projectsData} onProjectChange={setProjectsData}/>
+                  <AdminProject key={project.name} project={project} projectsData={projectsData} onProjectChange={setProjectsData}/>
                 ))}
               </div>
             )}
             {projectsData.length === 0 && <p>No projects found.</p>}
             {!addProject && (<button className="admin_button" onClick={() => setAddProject(true)}>Add</button>)}
             {addProject && (
-              <Add_project projectsData={projectsData} onProjectAdd={setProjectsData} setAddProject={setAddProject} />
+              <AddProject projectsData={projectsData} onProjectAdd={setProjectsData} setAddProject={setAddProject} />
             )}
             </div>
 
-        <div>
+        <div className="admin_resume">
           <h1>Resume</h1>
           <input type="file" onChange={(e) => onResumeChange(e)} />
           <button className="admin_button" onClick={handleUpload}>Upload</button>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import './Login.css'
 import axios from "axios";
 import {useAuth} from "../AuthContext"
-import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
     const [username, setUsername] = useState("")
@@ -30,7 +29,7 @@ const Login = (props) => {
             return
         }
 
-        axios.post('http://localhost:9000/login', {
+        axios.post(`${process.env.REACT_APP_BASE_URL}login`, {
             username: username,
             password: password
         })

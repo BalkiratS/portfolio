@@ -1,5 +1,5 @@
 import React from "react";
-import "./cv_button.css";
+import "./cvButton.css";
 import axios from "axios";
 
 const Cv_button = () => {
@@ -8,7 +8,7 @@ const Cv_button = () => {
         console.log('Download the cv')
 
         try {
-            const response = await axios.get("http://localhost:9000/resume", {
+            const response = await axios.get(`${process.env.REACT_APP_BASE_URL}resume`, {
                 responseType: 'blob'
             });
 

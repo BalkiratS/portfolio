@@ -32,11 +32,11 @@ const Skill = ({skill}) => {
             <div className="info">
                 {(skill.projects.length > 0) && 
                  <div className="projects">
-                 <span>Projects</span>
+                 <span className="span_heading">Projects</span>
                     <ul>
                         {skill.projects.map((project) => (
                             <li key={project.name}>
-                                <a href={project.link}>{project.name}</a>
+                                <span className="span_name">{project.name}</span>
                             </li>
                         ))}
                     </ul>
@@ -44,11 +44,11 @@ const Skill = ({skill}) => {
                         }
                 {(skill.courses.length > 0) && 
                 <div className="courses">
-                    <span>Courses</span>
+                    <span className="span_heading">Courses</span>
                     <ul>
                         {skill.courses.map((course) => (
                             <li key={course.name}>
-                                <a href={course.link}>{course.name}</a>
+                                <span className="span_name">{course.name}</span>
                             </li>
                         ))}
                     </ul>

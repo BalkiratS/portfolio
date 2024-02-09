@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../AuthContext";
-import './Admin_project.css'
+import './AdminProject.css'
 
-const Admin_Project = ({project, projectsData, onProjectChange}) => {
+const AdminProject = ({project, projectsData, onProjectChange}) => {
     const [isEditing, setIsEditing] = useState(false);
   const [updatedProject, setUpdatedProject] = useState({
           name: project.name,
@@ -19,7 +19,7 @@ const Admin_Project = ({project, projectsData, onProjectChange}) => {
 
   const submitProjectToBackend = async (updatedProject) => {
       try {
-          const response = await axios.patch(`http://localhost:9000/projects/auth/update/${updatedProject.name}`, updatedProject, {
+          const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}projects/auth/update/${updatedProject.name}`, updatedProject, {
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `${token}`,
@@ -41,7 +41,7 @@ const Admin_Project = ({project, projectsData, onProjectChange}) => {
     
       const deleteProject = async (projectName) => {
         try {
-            const response = await axios.delete(`http://localhost:9000/projects/auth/delete/${projectName}`, {
+            const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}projects/auth/delete/${projectName}`, {
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `${token}`,
@@ -159,4 +159,4 @@ const Admin_Project = ({project, projectsData, onProjectChange}) => {
     )
 }
 
-export default Admin_Project;
+export default AdminProject;

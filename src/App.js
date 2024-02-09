@@ -1,8 +1,7 @@
-import './App.css';
 import Main from './components/Main';
 import Admin from './components/Admin';
 import Login from './components/Login';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 
 

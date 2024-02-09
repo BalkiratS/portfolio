@@ -15,7 +15,7 @@
 }
 
 .titleContainer h1{
-    color: var(--5, #0D2F3F);
+    color: #EDB33C;
     font-family: Aclonica;
     font-size: 46px;
     font-style: normal;
@@ -71,11 +71,11 @@
 }
 
 .inputButton{
-    background-color: #286F6C;
+    background-color: transparent;
+    border: 2px solid #EDB33C;
     font-family: 'Poppins', sans-serif;
     font-size: 24px;
-    border: none;
-    color: white;
+    color: #EDB33C;
     font-weight: normal;
     padding: 8px 12px;
     font-size: medium;

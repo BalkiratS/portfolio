@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Project from "./Project";
 import './Projects.css'
 import axios from "axios";
+import {motion, useInView} from 'framer-motion'
 
 const Projects = () => {
     
     const [projectsData, setProjectsData] = useState([]);
 
+    const ref = useRef(null);
+    const isInView = useInView(ref, {
+        margin: "0px 0px -100px 0px",
+    })
+
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const res = await axios.get("http://localhost:9000/projects/")
+                const res = await axios.get(`${process.env.REACT_APP_BASE_URL}projects/`)
                 setProjectsData(res.data)
 
             } catch (error) {
@@ -24,7 +30,13 @@ const Projects = () => {
 
 
     return (
-        <div className="projects-section">
+        <motion.div ref={ref} id="projects" className="projects-section"
+        style={{
+            transform: isInView ? "none" : "translateX(-200px)",
+            opacity: isInView ? 1 : 0,
+            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)"
+          }}
+        >
             <h1>Projects</h1>
             <div className="project-cards">
                 {projectsData.map((project) => (
@@ -32,7 +44,7 @@ const Projects = () => {
                 ))}
             </div>
             
-        </div>
+        </motion.div>
         
         
     )

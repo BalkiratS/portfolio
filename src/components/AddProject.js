@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../AuthContext";
 import axios from "axios";
 
-const Add_project = ( {projectsData, onProjectAdd, setAddProject}) => {
+const AddProject = ( {projectsData, onProjectAdd, setAddProject}) => {
     const [newProject, setNewProject] = useState({
         name: "",
         description: "",
@@ -30,7 +30,7 @@ const Add_project = ( {projectsData, onProjectAdd, setAddProject}) => {
     const AddProjectToBackend = async (newProject, token) => {
   
       try {
-          const response = await axios.post('http://localhost:9000/projects/auth/add', newProject, {
+          const response = await axios.post(`${process.env.REACT_APP_BASE_URL}projects/auth/add`, newProject, {
               headers: {
                   'Content-Type': 'application/json',
                   'Authorization': `${token}`,
@@ -151,4 +151,4 @@ const Add_project = ( {projectsData, onProjectAdd, setAddProject}) => {
     )
 }
 
-export default Add_project;
+export default AddProject;

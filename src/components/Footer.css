@@ -3,15 +3,12 @@
 
 .footer{
     display: flex;
-    border: 2px solid black;
     justify-content: space-around;
     align-items: center;
     padding: 50px;
-    background-color: black;
 }
 
 .links-section{
-    border: 2px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +17,7 @@
     gap: 20px;
 
     h1{
-        color: var(--5, #fff);
+        color: rgba(245, 245, 245, 0.891);
         font-family: Gowun Batang;
         font-size: 66px;
         font-style: bold;
@@ -29,7 +26,7 @@
     }
 
     .contact-phone, .contact-email, .linkedin, .github{
-        color: white;
+        color: rgba(245, 245, 245, 0.891);
         cursor: pointer;
         display: flex;
         flex-direction: row;
@@ -50,7 +47,7 @@
     display: flex;
     justify-content: space-around;
     width: 70%;
-    color: white;
+    color: whitesmoke;
 }
 
 .contact-form{
@@ -70,8 +67,14 @@
             font-size: 20px;
             padding-left: 10px;
             border-radius: 8px;
-            border: none;
+            border: 2px solid #8DB6F4;
+            background: transparent;
+            color: rgba(245, 245, 245, 0.891);
         }
+    }
+
+    input::placeholder{
+        color: whitesmoke;
     }
 
     textarea{
@@ -79,6 +82,13 @@
         padding: 10px;
         border-radius: 8px;
         border: none;
+        border: 2px solid #8DB6F4;
+        background: transparent;
+        color: rgba(245, 245, 245, 0.891);
+    }
+
+    textarea::placeholder{
+        color: whitesmoke;
     }
 }
 
@@ -88,17 +98,47 @@
     font-size: 20px;
     padding: 10px 20px;
     font-family: Poppins;
-    background-color: #286F6C;
-    color: white;
+    background-color: #EDB33C;
+    color: black;
     border-radius: 8px;
     transition: 200ms ease-in-out;
 }
 
 .send-message:hover {
-    transform: scale(1.03); /* Increase size by 5% */
-    background-color: transparent; /* Keep background transparent on hover */
-    border: 2px solid #286F6C; /* Green border on hover */
-    color: #286F6C; /* Green text on hover */
+    transform: scale(1.03);
+    background-color: transparent; 
+    border: 2px solid #EDB33C;
+    color: #EDB33C;
 }
 
+@media screen and (max-width: 1190px) {
+    .footer {
+      padding: 10px;
+      flex-direction: column;
+    }
+  
+    .links-section {
+      text-align: center;
+      margin: 20px;
+    }
 
+    .contact-form {
+        width: 100%; /* Full width on smaller screens */
+        max-width: 400px; /* Limit the maximum width for better responsiveness */
+        margin: 0 auto; /* Center the form horizontally */
+      }
+
+      .name-email{
+        margin: 10px 10px;
+      }
+    
+      textarea {
+        font-size: 10px;
+        width: 90%;
+        align-self: center;
+      }
+    
+      .send-message {
+        width: 100%; /* Full width on smaller screens */
+      }
+  }

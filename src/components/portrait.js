@@ -5,8 +5,7 @@ const Portrait = () => {
     return (
         <div className="body">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" width="400" className="image">
-                <title>This is an image title</title>
-                <desc>This is an image description</desc>
+                <title>Balkirat Singh</title>
                 <defs>
                     <clipPath id="maskImage" clipPathUnits="userSpaceOnUse" >
                     <path d="M100 63A50 50 0 110 70C0 40 20 0 48 0c27 0 52 42 52 70z" />

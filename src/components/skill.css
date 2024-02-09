@@ -8,9 +8,9 @@
     margin: 5px;
     text-align: center;
     border-radius: 8px;
-    border: 2px solid #286F6C;
+    border: 2px solid #8DB6F4;
     transition: all 250ms ease-in-out;
-    background-color: #f5f7fa;
+    background-color: transparent;
     height: fit-content;
     /* background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
 }
@@ -18,7 +18,7 @@
 .name{
     margin: 0;
     padding: 3px 10px;
-    color: #286F6C;
+    color: whitesmoke;
     font-size: 20px;
     line-height: 34px;
     font-weight: 500;
@@ -27,24 +27,24 @@
 }
 
 .skill_card_short:hover{
-    background-color: #286F6C;
+    background-color: #8DB6F4;
 }
 
 .skill_card_short:hover p{
-    color: white;
+    color: #121212;
 }
 
 
 /* Expanded ------------------------------------------- */
 
 .skill_card_details{
-    border: 2px solid #286F6C;
+    
     width: 300px;
     display: flex;
     flex-direction: column;
     border-radius: 8px;
     margin: 10px;
-    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+    background: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
     transition: all 150ms ease-in-out;
       
 }
@@ -55,7 +55,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid #286f6b56;
+    border-bottom: 1px solid #00000036;
 }
 .skill_logo img {
     max-width: 90%;
@@ -67,7 +67,7 @@
     flex-direction: column;
     margin: 0px 24px 24px 24px;
     padding: 22px 0px 0px 0px;
-    border-top: 2px solid #286f6b5f;
+    border-top: 2px solid #0000005f;
 }
 
 .heading{
@@ -78,7 +78,7 @@
     font-weight: 500;
     line-height: 30px;
     align-self: right;
-    color: #286F6C;
+    color: whitesmoke;
     margin: 10px 0px;
     padding-bottom: 0px;
 }
@@ -87,12 +87,12 @@
     margin-bottom: 16px;
 }
 
-.projects span,
-.courses span{
+.span_heading{
     font-size: 18px;
     line-height: 22px;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
+    color: whitesmoke;
 }
 
 
@@ -107,7 +107,7 @@
 .projects li,
 .courses li{
     float: left;
-    border: 2px solid #286F6C;
+    border: 2px solid whitesmoke;
     margin-right: 5px;
     padding: 5px 10px;
     border-radius: 100px;
@@ -117,29 +117,10 @@
 }
 
 
-.projects a,
-.courses a{
-    text-decoration: none;
-    color: #286F6C;;
+.span_name{
+    font-weight: 300;
+    color: whitesmoke;
     font-family: 'Poppins', sans-serif;
+    cursor: default;
 }
 
-.projects li:hover,
-.courses li:hover{
-    background-color: #286F6C;
-}
-
-.projects li:hover a,
-.courses li:hover a{
-    color: white;
-}
-
-/* Close button styling */
-.close {
-    top: 0;
-    background-color: transparent;
-    border: 2px solid black;
-    cursor: pointer;
-    font-size: 18px;
-    color: #286F6C; /* Match card border color */
-  }
