@@ -18,10 +18,10 @@ const SideBar = ({isOpen, onClose}) => {
                 <IoClose className="close-side" size='2em' color="white" onClick={handleClose}/>
                 <nav className="side-nav">
                         <ul>
-                            <li><a href="#home" >Home</a></li>
-                            <li><a href="#skills">Skills</a></li>
-                            <li><a href="#projects">Projects</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#home" onClick={handleClose}>Home</a></li>
+                            <li><a href="#skills" onClick={handleClose}>Skills</a></li>
+                            <li><a href="#projects" onClick={handleClose}>Projects</a></li>
+                            <li><a href="#contact" onClick={handleClose}>Contact</a></li>
                             <CvButton className='side_cv_button' />
                         </ul>
                 </nav>
