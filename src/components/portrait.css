@@ -17,3 +17,9 @@
   .image:hover .image__foreground {
     transform: translateY(-7px) scale(1.05, 1.05);
   }
+
+  @media screen and (max-width: 1190px) {
+    .image {
+      transform: scale(0.9, 0.9);
+    }
+  }
