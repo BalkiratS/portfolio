@@ -1,121 +1,135 @@
-import React, { useState } from "react";
-import { useAuth } from "../AuthContext";
-import axios from "axios";
+import React, { useState } from "react"; // Import React and useState hook
+import { useAuth } from "../AuthContext"; // Import useAuth hook from AuthContext
+import axios from "axios"; // Import axios for making API requests
 
-const AddSkill = ( {skillsData, onSkillAdd, setAddSkill}) => {
-    const [newSkill, setNewSkill] = useState({
+const AddSkill = ({
+  skillsData, // Array of existing skills data
+  onSkillAdd, // Function to add a new skill
+  setAddSkill, // Function to set the add skill state
+}) => {
+  // State for the new skill form data
+  const [newSkill, setNewSkill] = useState({
+    name: "",
+    projects: [],
+    courses: [],
+    logo: null,
+    category: "", // Add category field to state
+  });
+
+  // Retrieve the auth token from AuthContext
+  const { token } = useAuth();
+
+  // State for new project and course names/links
+  const [newProjectName, setNewProjectName] = useState("");
+  const [newProjectLink, setNewProjectLink] = useState("");
+  const [newCourseName, setNewCourseName] = useState("");
+  const [newCourseLink, setNewCourseLink] = useState("");
+
+  // Handle form cancellation
+  const handleCancel = () => {
+    setNewSkill({
+      name: "",
+      projects: [],
+      courses: [],
+      logo: null,
+    });
+    setAddSkill(false);
+  };
+
+  // Function to send POST request to add skill to backend
+  const AddSkillToBackend = async (newSkill, token) => {
+    const formData = new FormData(); // Use FormData for multipart/form-data
+
+    formData.append("name", newSkill.name);
+    formData.append("projects", JSON.stringify(newSkill.projects));
+    formData.append("courses", JSON.stringify(newSkill.courses));
+    formData.append("logo", newSkill.logo); // Assuming newSkill.logo is a File object
+    formData.append("category", newSkill.category);
+
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}skills/auth/add`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `${token}`,
+          },
+        }
+      );
+
+      setNewSkill({
         name: "",
         projects: [],
         courses: [],
-        logo: null
-    })
+        logo: null,
+      });
 
-    const { token } = useAuth();
-
-
-
-    // State for new project and course
-    const [newProjectName, setNewProjectName] = useState("");
-    const [newProjectLink, setNewProjectLink] = useState("");
-    const [newCourseName, setNewCourseName] = useState("");
-    const [newCourseLink, setNewCourseLink] = useState("");
-
-    const handleCancel = () => {
-        setNewSkill({
-            name: "",
-            projects: [],
-            courses: [],
-            logo: null
-        })
-        setAddSkill(false)
+      onSkillAdd([...skillsData, newSkill]);
+      return response.data; // Return the saved skill data
+    } catch (error) {
+      console.error("Error adding skill:", error);
+      throw error;
     }
+  };
 
-    const AddSkillToBackend = async (newSkill, token) => {
+  // Handle logo file selection
+  const onLogoChange = (event) => {
+    const newLogoFile = event.target.files[0];
 
-      const formData = new FormData();
+    setNewSkill({
+      ...newSkill,
+      logo: newLogoFile,
+    });
+  };
 
-      formData.append('name', newSkill.name);
-      formData.append('projects', JSON.stringify(newSkill.projects));
-      formData.append('courses', JSON.stringify(newSkill.courses));
-      formData.append('logo', newSkill.logo);  // Assuming newSkill.logo is a File object
-      formData.append('category', newSkill.category);
-  
-      try {
-          const response = await axios.post(`${process.env.REACT_APP_BASE_URL}skills/auth/add`, formData, {
-              headers: {
-                  'Content-Type': 'multipart/form-data',
-                  'Authorization': `${token}`,
-              },
-          });
-  
-          setNewSkill({
-              name: "",
-              projects: [],
-              courses: [],
-              logo: null
-          });
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await AddSkillToBackend(newSkill, token);
+  };
 
-          onSkillAdd([...skillsData, newSkill])
-          return response.data; // Return the saved skill data
+  // Add a new project to the skill
+  const handleAddProject = () => {
+    setNewSkill({
+      ...newSkill,
+      projects: [...newSkill.projects, { name: newProjectName, link: newProjectLink }],
+    });
+    setNewProjectName("");
+    setNewProjectLink("");
+  };
 
-        } catch (error) {
-          console.error('Error adding skill:', error);
-          throw error;
-        }
-      };
+  // Delete a project from the skill
+  const deleteProject = (index) => {
+    setNewSkill({
+      ...newSkill,
+      projects: newSkill.projects.filter((_, i) => i !== index),
+    });
+  };
 
-      const onLogoChange = (event) => {
-        const newLogoFile = event.target.files[0];
-    
-        setNewSkill({
-            ...newSkill,
-            logo: newLogoFile,
-        });
-    };
+  // Add a new course to the skill
+  const handleAddCourse = () => {
+    setNewSkill({
+      ...newSkill,
+      courses: [...newSkill.courses, { name: newCourseName, link: newCourseLink }],
+    });
+    setNewCourseName("");
+    setNewCourseLink("");
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        await AddSkillToBackend(newSkill, token);
-    }
-
-
-
-    const handleAddProject = () => {
-        setNewSkill({
-          ...newSkill,
-          projects: [...newSkill.projects, { name: newProjectName, link: newProjectLink }],
-        });
-        setNewProjectName("");
-        setNewProjectLink("");
-      };
-    
-      const deleteProject = (index) => {
-        setNewSkill({
-          ...newSkill,
-          projects: newSkill.projects.filter((_, i) => i !== index),
-        });
-      };  
-    
-      const handleAddCourse = () => {
-        setNewSkill({
-          ...newSkill,
-          courses: [...newSkill.courses, { name: newCourseName, link: newCourseLink }],
-        });
-        setNewCourseName("");
-        setNewCourseLink("");
-      };
-      
-      const deleteCourse = (index) => {
-        setNewSkill({
-          ...newSkill,
-          courses: newSkill.courses.filter((_, i) => i !== index),
-        });
-      };
+  // Delete a course from the skill
+  const deleteCourse = (index) => {
+    setNewSkill({
+      ...newSkill,
+      courses: newSkill.courses.filter((_, i) => i !== index),
+    });
+  };
 
     return (
         <div className="skill_edit">
 
         <form onSubmit={handleSubmit}>
+          {/* Name, category, and logo fields */}
             <label>Name: </label>
             <input
                 type="text"
@@ -132,10 +146,12 @@ const AddSkill = ( {skillsData, onSkillAdd, setAddSkill}) => {
             <label>Logo: </label>
             <input type="file" id="logo-file" onChange={(e) => onLogoChange(e)} />
 
+            {/* Section for managing projects */}
             <div className="edit_projects">
                 <h4>Projects</h4>
                 <ul>
-                {newSkill.projects.map((project, index) => (
+                  {/* Render existing projects with edit and delete options */}
+                  {newSkill.projects.map((project, index) => (
                     <li key={index}>
                     <label>Name: </label>
                     <input

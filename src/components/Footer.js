@@ -5,13 +5,14 @@ import { MdEmail } from "react-icons/md";
 import axios from "axios";
 
 const Footer = () => {
-
+    // state to store form data
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         message: ''
     })
 
+    // Function to handle submission
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -32,12 +33,14 @@ const Footer = () => {
         }
 
         try {
+            // Sending form data to backend
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}message`, formData, {
               headers: {
                   'Content-Type': 'application/json',
               },
           });
             alert(response.data); // Log the response from the backend
+            // Resetting form data after successful submission
             setFormData({
                 name: '',
                 email: '',
@@ -49,8 +52,6 @@ const Footer = () => {
           }
 
     }
-
-    
 
     return(
         <footer id="contact" className="footer">

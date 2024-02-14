@@ -27,8 +27,16 @@
         align-items: center;
         &.face1 {
             box-sizing: border-box;
-            padding: 70px 5px 10px 5px;
+            padding: 0px 5px 0px 5px;
             height: 100%;
+
+            .content{
+              padding-top: 60px;
+              height: auto;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            }
 
             .description {
                 font-family: Poppins;
@@ -69,8 +77,9 @@
                     margin: 0;
                     padding: 0;
                     font-size: 36px;
+                    line-height: 56px;
                     color: #8DB6F4;
-                    transition: 0.5s;
+                    transition: all 0.5s ease-in-out;
                     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
                     z-index: 10;
                 }
@@ -93,14 +102,15 @@
         border-radius: 100px;
         padding: 5px 10px;
         float: left;
-        margin: 5px; /* Adjust spacing as needed */
+        margin: 5px;
       }
 
       .card:hover .face.face2 {
         height: 60px;
   
         h2 {
-          font-size: 26px;
+          font-size: 21px;
+          line-height: normal;
         }
       }
 

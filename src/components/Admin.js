@@ -1,26 +1,36 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useAuth } from '../AuthContext';
+import { useAuth } from "../AuthContext";
 import AdminSkill from "./AdminSkill";
 import AddSkill from "./AddSkill";
-import "./Admin.css"
+import "./Admin.css";
 import AdminProject from "./AdminProject";
 import AddProject from "./AddProject";
 
 function Admin() {
-  const [skillsData, setSkillsData] = useState([]); // State to store retrieved skills
+  // State for retrieved skills and projects data
+  const [skillsData, setSkillsData] = useState([]);
   const [projectsData, setProjectsData] = useState([]);
-  const [message, setMessage] = useState(""); // State for error or success messages
+
+  // State for error or success messages
+  const [message, setMessage] = useState("");
+
+  // State for add skill and add project modals
   const [addSkill, setAddSkill] = useState(false);
   const [addProject, setAddProject] = useState(false);
+
+  // State for resume file upload
   const [resumeFile, setResumeFile] = useState(null);
+
+  // Access auth token and logout function from AuthContext
   const { token, logout } = useAuth();
 
+  // Fetch skills data on mount and token changes
   useEffect(() => {
     const fetchSkills = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_BASE_URL}skills/`, {
-          headers: { Authorization: `${token}` }, // Add authorization header
+          headers: { Authorization: `${token}` },
         });
         setSkillsData(res.data);
       } catch (error) {
@@ -29,13 +39,14 @@ function Admin() {
     };
 
     fetchSkills();
-  }, [token]); // Re-fetch skills if token changes
+  }, [token]);
 
+  // Fetch projects data on mount and token changes
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_BASE_URL}projects/`, {
-          headers: { Authorization: `${token}` }, // Add authorization header
+          headers: { Authorization: `${token}` },
         });
         setProjectsData(res.data);
       } catch (error) {
@@ -44,41 +55,48 @@ function Admin() {
     };
 
     fetchProjects();
-  }, [token]); // Re-fetch skills if token changes
+  }, [token]);
 
+  // Call logout on window beforeunload
   useEffect(() => {
-    window.addEventListener('beforeunload', (event) => {
-      logout(); // Call the logout function
+    window.addEventListener("beforeunload", (event) => {
+      logout();
     });
 
     return () => {
-      window.removeEventListener('beforeunload', logout);
+      window.removeEventListener("beforeunload", logout);
     };
-  }, );
+  });
 
+  // Handle resume file selection
   const onResumeChange = (event) => {
     const newResumeFile = event.target.files[0];
     setResumeFile(newResumeFile);
-};
+  };
 
-const handleUpload = async () => {
-  try {
-    const formData = new FormData();
-    formData.append('resume', resumeFile);
+  // Handle resume upload
+  const handleUpload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("resume", resumeFile);
 
-    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}resume/upload`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Authorization': `${token}`,
-      },
-    });
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}resume/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `${token}`,
+          },
+        }
+      );
 
-    console.log('File uploaded successfully:', response.data);
-    setResumeFile(null)
-  } catch (error) {
-    console.error('Error uploading file:', error);
-  }
-};
+      console.log("File uploaded successfully:", response.data);
+      setResumeFile(null);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  };
 
   return (
     <div className="admin-main">

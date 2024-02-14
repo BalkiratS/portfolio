@@ -9,12 +9,15 @@ import SideBar from "./SideBar";
 const Header = () => {
     const navigate = useNavigate();
 
+    // Function to navigate to admin page
     const admin_click = () => {
         navigate('/admin');
     }
 
+    // State to control sidebar visibility
     const [isSideBarOpen, setIsSidebarOpen] = useState(false);
 
+    // Function to close sidebar
     const closeSideBar = () => {
         setIsSidebarOpen(false)
     }
@@ -35,18 +38,20 @@ const Header = () => {
                     </ul>
                 </nav>
             <div className="admin-cv">
+                {/* Icon for admin page */}
                 <svg className='admin' onClick={admin_click} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M19.7274 20.4471C19.2716 19.1713 18.2672 18.0439 16.8701 17.2399C15.4729 16.4358 13.7611 16 12 16C10.2389 16 8.52706 16.4358 7.12991 17.2399C5.73276 18.0439 4.72839 19.1713 4.27259 20.4471" stroke="whitesmoke" strokeWidth="2" strokeLinecap="round"/>
                         <circle cx="12" cy="8" r="4" stroke="whitesmoke" strokeWidth="2" strokeLinecap="round"/>
                         </svg>
-            
-            <div className="cv_button_div">
-                <CvButton />
+                {/* Button for CV */}
+                <div className="cv_button_div">
+                    <CvButton />
+                </div>
+                {/* Icon for sidebar */}
+                <RiMenuFill className="menu" size="2em" color="white" onClick={() => setIsSidebarOpen(true)}/>
             </div>
 
-            <RiMenuFill className="menu" size="2em" color="white" onClick={() => setIsSidebarOpen(true)}/>
-            </div>
-
+            {/* Sidebar component */}
             <SideBar isOpen={isSideBarOpen} onClose={closeSideBar} />
 
         </header>

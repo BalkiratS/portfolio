@@ -2,7 +2,7 @@ import React from "react";
 import "./SideBar.css"
 import { IoClose } from "react-icons/io5";
 import CvButton from "./cvButton";
-import {motion, AnimatePresence} from 'framer-motion'
+import {motion, AnimatePresence} from 'framer-motion';
 
 const SideBar = ({isOpen, onClose}) => {
 

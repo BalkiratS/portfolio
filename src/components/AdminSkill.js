@@ -4,75 +4,82 @@ import axios from "axios";
 import { useAuth } from "../AuthContext";
 
 const Admin_skill = ( {skill, skillsData, onSkillChange} ) => {
+  // State to control editing mode
   const [isEditing, setIsEditing] = useState(false);
+  // State to store updated skill information
   const [updatedSkill, setUpdatedSkill] = useState(skill);
 
+  // Fetching authentication token from context
   const {token} = useAuth();
 
-    // State for new project and course
-    const [newProjectName, setNewProjectName] = useState("");
-    const [newProjectLink, setNewProjectLink] = useState("");
-    const [newCourseName, setNewCourseName] = useState("");
-    const [newCourseLink, setNewCourseLink] = useState("");
+  // State for new project and course
+  const [newProjectName, setNewProjectName] = useState("");
+  const [newProjectLink, setNewProjectLink] = useState("");
+  const [newCourseName, setNewCourseName] = useState("");
+  const [newCourseLink, setNewCourseLink] = useState("");
 
-
+  // Function to submit updated skill to backend
   const submitSkillToBackend = async (updatedSkill) => {
     const formData = new FormData();
 
-      formData.append('name', updatedSkill.name);
-      formData.append('projects', JSON.stringify(updatedSkill.projects));
-      formData.append('courses', JSON.stringify(updatedSkill.courses));
-      formData.append('logo', updatedSkill.logo);  // Assuming updatedSkill.logo is a File object
-      formData.append('category', updatedSkill.category);
+    formData.append('name', updatedSkill.name);
+    formData.append('projects', JSON.stringify(updatedSkill.projects));
+    formData.append('courses', JSON.stringify(updatedSkill.courses));
+    formData.append('logo', updatedSkill.logo);  // Assuming updatedSkill.logo is a File object
+    formData.append('category', updatedSkill.category);
   
-      try {
-          const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}skills/auth/update/${updatedSkill.name}`, formData, {
-              headers: {
-                  'Content-Type': 'multipart/form-data',
-                  'Authorization': `${token}`,
-              },
-          });
-        console.log(response.data); // Return the saved skill data
-
-      } catch (error) {
-        console.error('Error updating skill:', error);
-        throw error;
-      }
-    };
-
-    const onLogoChange = (event) => {
-      const newLogoFile = event.target.files[0];
-      console.log(newLogoFile)
-  
-      setUpdatedSkill({
-          ...updatedSkill,
-          logo: newLogoFile,
+    try {
+      const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}skills/auth/update/${updatedSkill.name}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `${token}`,
+        },
       });
+      console.log(response.data); // Return the saved skill data
+
+    } catch (error) {
+      console.error('Error updating skill:', error);
+      throw error;
+    }
+  };
+
+  // Function to handle logo change
+  const onLogoChange = (event) => {
+    const newLogoFile = event.target.files[0];
+    console.log(newLogoFile)
+
+    setUpdatedSkill({
+      ...updatedSkill,
+      logo: newLogoFile,
+    });
   };
   
+  // Handling form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
     await submitSkillToBackend(updatedSkill);
     setIsEditing(false);
   };
 
+  // Function to delete a skill
   const deleteSkill = async (skillName) => {
     try {
-        const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}skills/auth/delete/${skillName}`, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${token}`,
-          },
-        });
-        onSkillChange(skillsData.filter((skill) => skill.name !== skillName));
-        console.log(response.data); // Return the saved skill data
+      const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}skills/auth/delete/${skillName}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`,
+        },
+      });
+      onSkillChange(skillsData.filter((skill) => skill.name !== skillName));
+      console.log(response.data); // Return the saved skill data
 
-      } catch (error) {
-        console.error('Error deleting skill:', error);
-        throw error;
-      }
-    };
+    } catch (error) {
+      console.error('Error deleting skill:', error);
+      throw error;
+    }
+  };
 
+  // Function to add a new project
   const handleAddProject = () => {
     setUpdatedSkill({
       ...updatedSkill,
@@ -82,6 +89,7 @@ const Admin_skill = ( {skill, skillsData, onSkillChange} ) => {
     setNewProjectLink("");
   };
 
+  // Function to delete a project
   const deleteProject = (index) => {
     setUpdatedSkill({
       ...updatedSkill,
@@ -89,6 +97,7 @@ const Admin_skill = ( {skill, skillsData, onSkillChange} ) => {
     });
   };  
 
+  // Function to add a new course
   const handleAddCourse = () => {
     setUpdatedSkill({
       ...updatedSkill,
@@ -98,6 +107,7 @@ const Admin_skill = ( {skill, skillsData, onSkillChange} ) => {
     setNewCourseLink("");
   };
   
+  // Function to delete a course
   const deleteCourse = (index) => {
     setUpdatedSkill({
       ...updatedSkill,

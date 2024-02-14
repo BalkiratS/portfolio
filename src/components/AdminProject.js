@@ -4,72 +4,81 @@ import { useAuth } from "../AuthContext";
 import './AdminProject.css'
 
 const AdminProject = ({project, projectsData, onProjectChange}) => {
+    // State to control editing mode
     const [isEditing, setIsEditing] = useState(false);
-  const [updatedProject, setUpdatedProject] = useState({
-          name: project.name,
-          description: project.description,
-          technology: project.technology,
-          link: project.link
-      });
+    // State to store updated project information
+    const [updatedProject, setUpdatedProject] = useState({
+        name: project.name,
+        description: project.description,
+        technology: project.technology,
+        link: project.link
+    });
 
-  // State for new technology
-  const [newTechName, setNewTechName] = useState("");
+    // State for new technology
+    const [newTechName, setNewTechName] = useState("");
 
-  const {token} = useAuth();
+    // Fetching authentication token from context
+    const {token} = useAuth();
 
-  const submitProjectToBackend = async (updatedProject) => {
-      try {
-          const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}projects/auth/update/${updatedProject.name}`, updatedProject, {
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${token}`,
-            },
-          });
-        console.log(response.data); // Return the saved project data
+    // Function to submit updated project to backend
+    const submitProjectToBackend = async (updatedProject) => {
+        try {
+            const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}projects/auth/update/${updatedProject.name}`, updatedProject, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `${token}`,
+                },
+            });
+            console.log(response.data); // Return the saved project data
 
-      } catch (error) {
-        console.error('Error updating project:', error);
-        throw error;
-      }
+        } catch (error) {
+            console.error('Error updating project:', error);
+            throw error;
+        }
     };
 
+    // Handling form submission
     const handleSubmit = async (e) => {
         e.preventDefault()
         await submitProjectToBackend(updatedProject);
         setIsEditing(false);
-      };
+    };
     
-      const deleteProject = async (projectName) => {
+    // Function to delete a project
+    const deleteProject = async (projectName) => {
         try {
             const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}projects/auth/delete/${projectName}`, {
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${token}`,
-              },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `${token}`,
+                },
             });
+            // Updating projects data after deletion
             onProjectChange(projectsData.filter((project) => project.name !== projectName));
             console.log(response.data); // Return the saved project data
-    
-          } catch (error) {
+
+        } catch (error) {
             console.error('Error deleting project:', error);
             throw error;
-          }
-        };
-    
-      const handleAddTech = () => {
+        }
+    };
+
+    // Function to add a new technology
+    const handleAddTech = () => {
         setUpdatedProject({
-          ...updatedProject,
-          technology: [...updatedProject.technology, { name: newTechName}],
+            ...updatedProject,
+            technology: [...updatedProject.technology, { name: newTechName}],
         });
         setNewTechName("");
-      };
-    
-      const deleteTech = (index) => {
+    };
+
+    // Function to delete a technology
+    const deleteTech = (index) => {
         setUpdatedProject({
-          ...updatedProject,
-          technology: updatedProject.technology.filter((_, i) => i !== index),
+            ...updatedProject,
+            technology: updatedProject.technology.filter((_, i) => i !== index),
         });
-      };  
+    };  
 
     return (
         <div className="project_edit">
