@@ -20,7 +20,7 @@ const Portrait = () => {
                     <image clipPath="url(#maskBackground)" width="180" height="180" x="50" y="18" href={require("../public/background.jpeg")} transform="translate(-90 -31)" />
                 
                 {/* <!-- Foreground image --> */}
-                    <image width="100" height="140" x="-3" y="-1" fill="none" className="image__foreground" href={require("../public/Subject.png")} />
+                    <image width="100" height="140" x="-3" y="-1" fill="none" className="image__foreground" href={require("../public/Subject_1.png")} />
                 </g>
             </svg>
         </div>
